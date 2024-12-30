@@ -14,9 +14,15 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'id_akreditasi')->textInput()->label('ID Akreditasi') ?>
 
-<?= $form->field($model, 'id_prodi')->textInput()->label('ID Program Studi') ?>
+<?= $form->field($model, 'id_prodi')->dropDownList(
+    \yii\helpers\ArrayHelper::map(\app\models\Prodi::find()->all(), 'id_prodi', 'nama_prodi'),
+    ['prompt' => 'Pilih Program Studi']
+)->label('Program Studi') ?>
 
-<?= $form->field($model, 'id_la')->textInput()->label('ID Lembaga Akreditasi') ?>
+<?= $form->field($model, 'id_la')->dropDownList(
+    \yii\helpers\ArrayHelper::map(\app\models\LembagaAkreditasi::find()->all(), 'id_la', 'nama_la'),
+    ['prompt' => 'Pilih Lembaga Akreditasi']
+)->label('Lembaga Akreditasi') ?>
 
 <?= $form->field($model, 'histori_akreditasi')->textInput(['maxlength' => true])->label('Histori Akreditasi') ?>
 
