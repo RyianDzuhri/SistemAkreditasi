@@ -21,45 +21,60 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Lakukan Penilaian!', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
     'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
     'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'attribute' => 'id_penilaian',
-                'label' => 'ID Penilaian', // Mengubah label kolom
-            ],
-            [
-                'attribute' => 'id_prodi',
-                'label' => 'ID Program Studi', // Mengubah label kolom
-            ],
-            [
-                'attribute' => 'id_indikator',
-                'label' => 'ID Indikator Penilaian', // Mengubah label kolom
-            ],
-            [
-                'attribute' => 'skor_penilaian',
-                'label' => 'Skor Penilaian', // Mengubah label kolom
-            ],
-            [
-                'attribute' => 'tgl_penilaian',
-                'label' => 'Tanggal Penilaian', // Mengubah label kolom
-                'format' => ['date', 'php:d-m-Y'], // Mengubah format tanggal
-            ],
-
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PenilaianProdi $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id_penilaian' => $model->id_penilaian, 'id_prodi' => $model->id_prodi, 'id_indikator' => $model->id_indikator]);
-                }
-            ],
+        // ID Penilaian tanpa link
+        [
+            'label' => 'ID Penilaian',
+            'value' => function ($model) {
+                return $model->id_penilaian;  // Menampilkan ID tanpa link
+            },
         ],
-    ]); ?>
 
+        // Program Studi tanpa link
+        [
+            'label' => 'Program Studi',
+            'value' => function ($model) {
+                return $model->prodi->nama_prodi;  // Menampilkan nama program studi tanpa link
+            },
+        ],
+
+        // Indikator Penilaian tanpa link
+        [
+            'label' => 'Indikator Penilaian',
+            'value' => function ($model) {
+                return $model->indikator->nama_indikator;  // Menampilkan nama indikator tanpa link
+            },
+        ],
+
+        // Skor Penilaian
+        [
+            'label' => 'Skor Penilaian',
+            'value' => function ($model) {
+                return $model->skor_penilaian;  // Menampilkan skor penilaian tanpa link
+            },
+        ],
+
+        // Tanggal Penilaian
+        [
+            'label' => 'Tanggal Penilaian',
+            'value' => function ($model) {
+                return Yii::$app->formatter->asDate($model->tgl_penilaian, 'php:d-m-Y');  // Menampilkan tanggal tanpa link
+            },
+        ],
+
+        // Kolom untuk actions (view, update, delete)
+        [
+            'class' => ActionColumn::className(),
+            'urlCreator' => function ($action, PenilaianProdi $model, $key, $index, $column) {
+                return Url::toRoute([$action, 'id_penilaian' => $model->id_penilaian, 'id_prodi' => $model->id_prodi, 'id_indikator' => $model->id_indikator]);
+            }
+        ],
+    ],
+]); ?>
 
 
 </div>

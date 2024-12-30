@@ -30,24 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             [
-                'label' => 'ID Penilaian', // Ganti label
+                'label' => 'ID Penilaian',
                 'value' => $model->id_penilaian,
             ],
             [
-                'label' => 'ID Program Studi', // Ganti label
-                'value' => $model->id_prodi,
+                'label' => 'Program Studi',
+                'value' => $model->prodi ? $model->prodi->nama_prodi : '(Tidak Ditemukan)', // Ambil data dari relasi
             ],
             [
-                'label' => 'ID Indikator Penilaian', // Ganti label
-                'value' => $model->id_indikator,
+                'label' => 'Indikator Penilaian',
+                'value' => $model->indikator ? $model->indikator->nama_indikator : '(Tidak Ditemukan)', // Ambil data dari relasi
             ],
             [
-                'label' => 'Skor Penilaian', // Ganti label
+                'label' => 'Skor Penilaian',
                 'value' => $model->skor_penilaian,
             ],
             [
-                'label' => 'Tanggal Penilaian', // Ganti label
-                'value' => $model->tgl_penilaian,
+                'label' => 'Tanggal Penilaian',
+                'value' => Yii::$app->formatter->asDate($model->tgl_penilaian), // Format tanggal
             ],
         ],
     ]) ?>

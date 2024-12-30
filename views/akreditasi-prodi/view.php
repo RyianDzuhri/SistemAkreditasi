@@ -34,12 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->id_akreditasi,
             ],
             [
-                'label' => 'ID Program Studi',
-                'value' => $model->id_prodi,
+                'label' => 'Program Studi',
+                'value' => $model->prodi ? $model->prodi->nama_prodi : '(Tidak Ditemukan)',
             ],
             [
-                'label' => 'ID Lembaga Akreditasi',
-                'value' => $model->id_la,
+                'label' => 'Lembaga Akreditasi',
+                'value' => $model->la ? $model->la->nama_la : 'N/A', // Menampilkan nama Lembaga Akreditasi berdasarkan relasi
             ],
             [
                 'label' => 'Histori Akreditasi',
@@ -55,6 +55,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
-
 
 </div>
