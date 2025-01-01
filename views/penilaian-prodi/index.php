@@ -26,35 +26,43 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        // ID Penilaian tanpa link
+        // ID Penilaian
         [
             'label' => 'ID Penilaian',
             'value' => function ($model) {
-                return $model->id_penilaian;  // Menampilkan ID tanpa link
+                return $model->id_penilaian;  // Menampilkan ID 
             },
         ],
 
-        // Program Studi tanpa link
+        // Program Studi
         [
             'label' => 'Program Studi',
             'value' => function ($model) {
-                return $model->prodi->nama_prodi;  // Menampilkan nama program studi tanpa link
+                return $model->prodi->nama_prodi;  // Menampilkan nama program studi 
             },
         ],
 
-        // Indikator Penilaian tanpa link
+        // Indikator Penilaian 
         [
             'label' => 'Indikator Penilaian',
             'value' => function ($model) {
-                return $model->indikator->nama_indikator;  // Menampilkan nama indikator tanpa link
+                return $model->indikator->nama_indikator;  // Menampilkan nama indikator 
             },
         ],
+        [
+            'label' => 'Elemen',
+            'value' => function ($model) {
+                // Pastikan `elemen` dimuat melalui relasi
+                return $model->indikator->elemen->nama_elemen ?? '(Tidak tersedia)';
+            },
+        ],
+        
 
         // Skor Penilaian
         [
             'label' => 'Skor Penilaian',
             'value' => function ($model) {
-                return $model->skor_penilaian;  // Menampilkan skor penilaian tanpa link
+                return $model->skor_penilaian;  // Menampilkan skor penilaian 
             },
         ],
 
@@ -62,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'label' => 'Tanggal Penilaian',
             'value' => function ($model) {
-                return Yii::$app->formatter->asDate($model->tgl_penilaian, 'php:d-m-Y');  // Menampilkan tanggal tanpa link
+                return Yii::$app->formatter->asDate($model->tgl_penilaian, 'long'); // Menggunakan formatter untuk format tanggal
             },
         ],
 

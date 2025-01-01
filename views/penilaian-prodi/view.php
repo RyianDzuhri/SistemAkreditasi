@@ -42,6 +42,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->indikator ? $model->indikator->nama_indikator : '(Tidak Ditemukan)', // Ambil data dari relasi
             ],
             [
+                'label' => 'Elemen Penilaian',
+                'value' => $model->indikator && $model->indikator->elemen 
+                    ? $model->indikator->elemen->nama_elemen 
+                    : '(Tidak Ditemukan)', // Ambil elemen melalui relasi indikator
+            ],
+            [
                 'label' => 'Skor Penilaian',
                 'value' => $model->skor_penilaian,
             ],

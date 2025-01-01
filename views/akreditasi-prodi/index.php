@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // Menampilkan ID Akreditasi tanpa link
+            // Menampilkan ID Akreditasi
             [
                 'label' => 'ID Akreditasi',
                 'value' => function ($model) {
@@ -50,15 +50,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            // Menampilkan Histori Akreditasi sebagai teks biasa
+            // Menampilkan Histori Akreditasi
             [
                 'label' => 'Histori Akreditasi',
                 'value' => function ($model) {
-                    return Html::encode($model->histori_akreditasi); // Menggunakan Html::encode
+                    $descriptions = [
+                        'A' => 'A (Baik Sekali)',
+                        'B' => 'B (Baik)',
+                        'C' => 'C (Cukup)',
+                        'D' => 'D (Kurang)',
+                        'Belum Terakreditasi' => 'Belum Terakreditasi',
+                    ];
+                    return Html::encode($descriptions[$model->histori_akreditasi] ?? 'Tidak Diketahui');
                 },
             ],
 
-            // Menampilkan Tanggal Mulai sebagai teks biasa
+            // Menampilkan Tanggal Mulai
             [
                 'label' => 'Tanggal Mulai',
                 'value' => function ($model) {

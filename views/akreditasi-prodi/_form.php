@@ -24,11 +24,24 @@ use yii\widgets\ActiveForm;
     ['prompt' => 'Pilih Lembaga Akreditasi']
 )->label('Lembaga Akreditasi') ?>
 
-<?= $form->field($model, 'histori_akreditasi')->textInput(['maxlength' => true])->label('Histori Akreditasi') ?>
+<?= $form->field($model, 'histori_akreditasi')->dropDownList(
+    [
+        'A' => 'A (Baik Sekali)',
+        'B' => 'B (Baik)',
+        'C' => 'C (Cukup)',
+        'D' => 'D (Kurang)',
+        'Belum Terakreditasi' => 'Belum Terakreditasi',
+    ],
+    [
+        'prompt' => 'Pilih Akreditasi',
+        'id' => 'histori-akreditasi-dropdown' // Tambahkan ID
+    ]
+)->label('Histori Akreditasi') ?>
 
 <?= $form->field($model, 'tgl_mulai')->input('date')->label('Tanggal Mulai') ?>
 
 <?= $form->field($model, 'tgl_berakhir')->input('date')->label('Tanggal Berakhir') ?>
+
 
 <div class="form-group">
     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

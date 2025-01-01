@@ -42,16 +42,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->la ? $model->la->nama_la : 'N/A', // Menampilkan nama Lembaga Akreditasi berdasarkan relasi
             ],
             [
-                'label' => 'Histori Akreditasi',
-                'value' => $model->histori_akreditasi,
+               'label' => 'Histori Akreditasi',
+                'value' => function ($model) {
+                    $descriptions = [
+                        'A' => 'A (Baik Sekali)',
+                        'B' => 'B (Baik)',
+                        'C' => 'C (Cukup)',
+                        'D' => 'D (Kurang)',
+                        'Belum Terakreditasi' => 'Belum Terakreditasi',
+                    ];
+                    return Html::encode($descriptions[$model->histori_akreditasi] ?? 'Tidak Diketahui');
+                },
             ],
             [
                 'label' => 'Tanggal Mulai',
-                'value' => $model->tgl_mulai,
+                'value' => Yii::$app->formatter->asDate($model->tgl_mulai),
             ],
             [
                 'label' => 'Tanggal Berakhir',
-                'value' => $model->tgl_berakhir,
+                'value' => Yii::$app->formatter->asDate($model->tgl_berakhir),
             ],
         ],
     ]) ?>
