@@ -18,5 +18,5 @@ Jika Anda lebih nyaman menggunakan antarmuka grafis, ikuti langkah-langkah berik
    - Pastikan format file adalah **SQL**.
 
 4. **Eksekusi Import**
-   - Klik tombol **Go** untuk memulai proses impor.
+   - Klik tombol **Import** untuk memulai proses impor.
    - Tunggu hingga proses selesai. Jika berhasil, akan muncul pesan sukses.
